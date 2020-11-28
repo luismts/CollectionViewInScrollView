@@ -10,9 +10,9 @@
         <local:ListViewAutoFitContentViewModel x:Name="ViewModel" />
     </ContentPage.BindingContext>
 
-    <ctrls:CustomScrollView x:Name="scrollView">
+    <ctrls:CustomScrollView x:Name="scrollView" CollectionView="collectionView">
         <StackLayout x:Name="StackLayout">
-            
+
             <Button
                 x:Name="btn1"
                 HeightRequest="100"
@@ -21,8 +21,8 @@
                 x:Name="btn2"
                 HeightRequest="100"
                 Text="Component2" />
-            
-            <CollectionView x:Name="listView" ItemsSource="{Binding BookInfo}">
+
+            <CollectionView x:Name="collectionView" ItemsSource="{Binding BookInfo}">
                 <CollectionView.HeaderTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -80,7 +80,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            
+
         </StackLayout>
     </ctrls:CustomScrollView>
 
