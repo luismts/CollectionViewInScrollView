@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace CollectionViewInScrollView
 {
-    public class ExtScrollView : ScrollView
+    public class CustomScrollView : ScrollView
     {
         protected override void LayoutChildren(double x, double y, double width, double height)
         {
