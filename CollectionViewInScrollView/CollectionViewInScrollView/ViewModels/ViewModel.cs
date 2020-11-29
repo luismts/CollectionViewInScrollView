@@ -11,40 +11,52 @@ namespace CollectionViewInScrollView
 {
     public class ListViewAutoFitContentViewModel : INotifyPropertyChanged
     {
-        #region Fields
-
-        private ObservableCollection<ListViewBookInfo> bookInfo;
-
-        #endregion
-
-        #region Constructor
-
         public ListViewAutoFitContentViewModel()
         {
-            GenerateSource();
+            var images = new List<string>
+            {
+                "path",
+                "thinking",
+                "time",
+                "thinking",
+                "path",
+                "time",
+                "path",
+                "thinking",
+                "time",
+                "thinking",
+                "path",
+                "time",
+                "path",
+                "thinking",
+                "time",
+                "thinking",
+                "path",
+                "time",
+                "path",
+                "thinking",
+                "time",
+                "thinking",
+                "path",
+                "time",
+                "path",
+                "thinking",
+                "time",
+                "thinking",
+                "path",
+                "time",
+            };
+            _images = new ObservableCollection<string>(images);
         }
 
-        #endregion
+  
 
-        #region Properties
-
-        public ObservableCollection<ListViewBookInfo> BookInfo
+        private ObservableCollection<string> _images;
+        public ObservableCollection<string> Images
         {
-            get { return bookInfo; }
-            set { this.bookInfo = value; }
+            get { return _images; }
+            set { this._images = value; }
         }
-
-        #endregion
-
-        #region Generate Source
-
-        private void GenerateSource()
-        {
-            ListViewBookInfoRepository bookInfoRepository = new ListViewBookInfoRepository();
-            bookInfo = bookInfoRepository.GetBookInfo();
-        }
-
-        #endregion
 
         #region Interface Member
 
