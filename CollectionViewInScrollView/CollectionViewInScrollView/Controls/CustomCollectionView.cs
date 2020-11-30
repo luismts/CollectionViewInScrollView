@@ -44,7 +44,7 @@ namespace CollectionViewInScrollView.Controls
 
             if (_rowHeigt > 0)
             {
-                HeightRequest = (_rowHeigt * rowCount) / _columns;                
+                HeightRequest = (_rowHeigt * rowCount) / _columns;             
             } 
         }
 
