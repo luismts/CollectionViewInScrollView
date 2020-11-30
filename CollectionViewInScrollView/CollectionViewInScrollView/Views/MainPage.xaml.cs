@@ -14,5 +14,22 @@ namespace CollectionViewInScrollView
         {
             InitializeComponent();
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            // Here you can know the height of your control
+        }
+
+        private void btn1_Clicked(object sender, EventArgs e)
+        {
+            collectionView.IsVisible = true;
+            labelView.IsVisible = false;
+        }
+
+        private void btn2_Clicked(object sender, EventArgs e)
+        {
+            collectionView.IsVisible = false;
+            labelView.IsVisible = true;
+        }
     }
 }

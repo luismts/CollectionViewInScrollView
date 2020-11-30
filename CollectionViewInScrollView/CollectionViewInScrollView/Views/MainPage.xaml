@@ -3,85 +3,74 @@
     x:Class="CollectionViewInScrollView.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ctrls="clr-namespace:CollectionViewInScrollView"
+    xmlns:ctrls="clr-namespace:CollectionViewInScrollView.Controls"
     xmlns:local="clr-namespace:CollectionViewInScrollView">
 
     <ContentPage.BindingContext>
         <local:ListViewAutoFitContentViewModel x:Name="ViewModel" />
     </ContentPage.BindingContext>
 
-    <ctrls:CustomScrollView x:Name="scrollView" CollectionView="collectionView">
+    <ScrollView x:Name="scrollView">
         <StackLayout x:Name="StackLayout">
 
-            <Button
-                x:Name="btn1"
-                HeightRequest="100"
-                Text="Component1" />
-            <Button
-                x:Name="btn2"
-                HeightRequest="100"
-                Text="Component2" />
+            <Label
+                Padding="50"
+                BackgroundColor="DeepSkyBlue"
+                FontSize="Large"
+                HorizontalTextAlignment="Center"
+                Text="This is my HEADER !!!" />
 
-            <CollectionView x:Name="collectionView" ItemsSource="{Binding BookInfo}">
-                <CollectionView.HeaderTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                                    <Grid WidthRequest="100">
-                                        <Label
-                                            Margin="20,0,0,0"
-                                            FontAttributes="Bold"
-                                            HorizontalOptions="Center"
-                                            LineBreakMode="WordWrap"
-                                            Text="This is the part which defines that the SfListView is working fine"
-                                            VerticalOptions="Center" />
-                                    </Grid>
-                                </StackLayout>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </CollectionView.HeaderTemplate>
+            <StackLayout
+                BackgroundColor="AliceBlue"
+                HeightRequest="56"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal">
+                <Button
+                    x:Name="btn1"
+                    Clicked="btn1_Clicked"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Tab1" />
+
+                <Button
+                    x:Name="btn2"
+                    Clicked="btn2_Clicked"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Tab2" />
+            </StackLayout>
+
+            <Label
+                x:Name="labelView"
+                Padding="50"
+                BackgroundColor="LightGoldenrodYellow"
+                FontSize="Large" IsVisible="False"
+                HorizontalTextAlignment="Center"
+                Text="This is TAB2 Content !!!" />
+
+            <ctrls:CustomCollectionView
+                x:Name="collectionView"
+                Columns="3"
+                ItemSizingStrategy="MeasureFirstItem"
+                ItemsLayout="VerticalGrid, 3"
+                ItemsSource="{Binding Images}"
+                RowHeigt="120"
+                ScrollView="scrollView">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid RowSpacing="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                FontAttributes="Italic"
-                                Text="{Binding BookNumber}" />
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                FontAttributes="Italic"
-                                Text="{Binding BookName}" />
-                            <Label
-                                Grid.Row="1"
-                                Grid.ColumnSpan="2"
-                                Text="{Binding BookDescription}"
-                                TextColor="#474747"
-                                VerticalTextAlignment="Center" />
-                            <BoxView
-                                Grid.Row="2"
-                                Grid.ColumnSpan="2"
-                                BackgroundColor="Black"
-                                HeightRequest="1" />
-                        </Grid>
+                        <Image
+                            Margin="0"
+                            HeightRequest="120"
+                            HorizontalOptions="FillAndExpand"
+                            Source="{Binding .}">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            </Image.GestureRecognizers>
+                        </Image>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
+            </ctrls:CustomCollectionView>
 
         </StackLayout>
-    </ctrls:CustomScrollView>
+    </ScrollView>
 
 </ContentPage>
