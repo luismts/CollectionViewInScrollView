@@ -8,7 +8,7 @@ namespace CollectionViewInScrollView.Controls
     public class CustomCollectionView : CollectionView
     {
         private ScrollView _scrollView;
-        private int _rowHeigt, _columns = 1;
+        private int _rowHeigt, _columns;
         private double previousScrollViewPosition = 0;
 
         public CustomCollectionView()
@@ -33,19 +33,18 @@ namespace CollectionViewInScrollView.Controls
             set => _rowHeigt = Convert.ToInt32(value);
         }
 
-        public int Columns
-        {
-            set => _columns = Convert.ToInt32(value);
-        }
-
         private void UpdateHeight()
         {
-            int rowCount = RowCount;
-
-            if (_rowHeigt > 0)
+            if(_columns  == 0)
             {
-                HeightRequest = (_rowHeigt * rowCount) / _columns;             
-            } 
+                if (ItemsLayout is GridItemsLayout layout)                
+                    _columns = layout.Span;
+                else
+                    _columns = 1;
+            }
+
+            if (_rowHeigt > 0)            
+                HeightRequest = (_rowHeigt * RowCount) / _columns;
         }
 
         protected override void OnBindingContextChanged()

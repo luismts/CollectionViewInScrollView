@@ -42,13 +42,13 @@
                 x:Name="labelView"
                 Padding="50"
                 BackgroundColor="LightGoldenrodYellow"
-                FontSize="Large" IsVisible="False"
+                FontSize="Large"
                 HorizontalTextAlignment="Center"
+                IsVisible="False"
                 Text="This is TAB2 Content !!!" />
 
             <ctrls:CustomCollectionView
                 x:Name="collectionView"
-                Columns="3"
                 ItemSizingStrategy="MeasureFirstItem"
                 ItemsLayout="VerticalGrid, 3"
                 ItemsSource="{Binding Images}"
