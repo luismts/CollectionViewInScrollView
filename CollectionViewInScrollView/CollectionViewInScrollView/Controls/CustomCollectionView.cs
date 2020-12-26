@@ -9,12 +9,8 @@ namespace CollectionViewInScrollView.Controls
     {
         private ScrollView _scrollView;
         private int _rowHeigt, _columns;
-        private double previousScrollViewPosition = 0;
-
-        public CustomCollectionView()
-        {
-            //this.SizeChanged += CustomCollectionView_SizeChanged;
-        }
+        private double _previousScrollViewPosition = 0;
+        private int _rowCount => Convert.ToInt32(ItemsSource.Cast<object>().ToList().Count);
 
         [TypeConverter(typeof(ReferenceTypeConverter))]
         public ScrollView ScrollView
@@ -25,8 +21,6 @@ namespace CollectionViewInScrollView.Controls
                 _scrollView.Scrolled += _scrollView_Scrolled;
             }
         }
-
-        private int RowCount => Convert.ToInt32(ItemsSource.Cast<object>().ToList().Count);
 
         public int RowHeigt 
         {
@@ -44,7 +38,7 @@ namespace CollectionViewInScrollView.Controls
             }
 
             if (_rowHeigt > 0)            
-                HeightRequest = (_rowHeigt * RowCount) / _columns;
+                HeightRequest = (_rowHeigt * _rowCount) / _columns;
         }
 
         protected override void OnBindingContextChanged()
@@ -61,7 +55,7 @@ namespace CollectionViewInScrollView.Controls
 
         private void _scrollView_Scrolled(object sender, ScrolledEventArgs e)
         {
-            if (previousScrollViewPosition < e.ScrollY)
+            if (_previousScrollViewPosition < e.ScrollY)
             {
                 //scrolled down
 
@@ -79,7 +73,7 @@ namespace CollectionViewInScrollView.Controls
                 RemainingItemsThresholdReachedCommand?.Execute(RemainingItemsThresholdReachedCommandParameter);
             }
 
-            previousScrollViewPosition = e.ScrollY;
+            _previousScrollViewPosition = e.ScrollY;
         }
 
         protected override void OnChildAdded(Element child)
