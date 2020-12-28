@@ -13,40 +13,16 @@ namespace CollectionViewInScrollView
     {
         public ListViewAutoFitContentViewModel()
         {
-            var images = new List<string>
+            var images = new List<string>();
+
+            for (int i = 0; i < 5000; i++)
             {
-                "path",
-                "thinking",
-                "time",
-                "thinking",
-                "path",
-                "time",
-                "path",
-                "thinking",
-                "time",
-                "thinking",
-                "path",
-                "time",
-                "path",
-                "thinking",
-                "time",
-                "thinking",
-                "path",
-                "time",
-                "path",
-                "thinking",
-                "time",
-                "thinking",
-                "path",
-                "time",
-                "path",
-                "thinking",
-                "time",
-                "thinking",
-                "path",
-                "time",
-            };
-            _images = new ObservableCollection<string>(images);
+                images.Add("path");
+                images.Add("thinking");
+                images.Add("time");
+            }
+
+            _images = new ObservableCollection<string>(images.OrderBy(i => Guid.NewGuid()).ToList());
         }
 
   
