@@ -10,7 +10,8 @@ namespace CollectionViewInScrollView
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new BestPracticePage();  // Good way
+            //MainPage = new MainPage();        // Bad way
         }
 
         protected override void OnStart()
