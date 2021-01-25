@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CollectionViewInScrollView.Controls
@@ -34,12 +35,10 @@ namespace CollectionViewInScrollView.Controls
         {
             double scrollY = e.VerticalOffset < 0 ? 0 : e.VerticalOffset;
             scrollY = scrollY > _customHeader.Height ? _customHeader.Height : scrollY;
-            
-            //Show or hide the header
-            await _customHeader?.TranslateTo(0, -scrollY, 50);
 
-            var viewMarging = _secondContent.Margin;
-            _secondContent.Margin = new Thickness(viewMarging.Left, -scrollY + _customHeader.Height, viewMarging.Right, viewMarging.Bottom);
+            ////Show or hide the header and scroll the second view
+            await Task.WhenAll(_customHeader?.TranslateTo(0, -scrollY, 50), 
+                _secondContent?.TranslateTo(0, -scrollY + _customHeader.Height, 50));
         }
     }
 }
